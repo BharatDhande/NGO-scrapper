@@ -18,10 +18,10 @@ import streamlit as st
 import google.generativeai as genai
 load_dotenv()
 
-# Get API key from environment variables
-api_key = os.getenv("GOOGLE_API_KEY")
+# Match the variable name in Advanced Settings
+api_key = os.getenv("GEMINI_API_KEY")
 
-# Strip whitespace if present
+# Strip whitespace
 if api_key:
     api_key = api_key.strip()
 
