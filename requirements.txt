@@ -13,3 +13,6 @@ phonenumbers
 geopy
 textblob
 validators
+streamlit
+google-generativeai
+python-dotenv
