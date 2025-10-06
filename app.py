@@ -18,7 +18,6 @@ import streamlit as st
 import google.generativeai as genai
 load_dotenv()
 
-# ✅ Then read the API key
 api_key = os.getenv("GEMINI_API_KEY")
 
 if api_key:
