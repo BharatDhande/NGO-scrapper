@@ -16,21 +16,20 @@ import time
 
 import streamlit as st
 import google.generativeai as genai
-load_dotenv()
-
-# Match the variable name in Advanced Settings
 api_key = os.getenv("GEMINI_API_KEY")
 
-# Strip whitespace
+# Strip whitespace just in case
 if api_key:
     api_key = api_key.strip()
 
-# Configure Gemini AI
+# Configure Gemini AI or do nothing if missing
 if api_key:
     genai.configure(api_key=api_key)
     st.success("✅ Gemini API key loaded successfully.")
 else:
-    pass
+    st.error(
+        "⚠️ Gemini API key not found! Please set it in .env (local) or Streamlit Cloud Advanced Settings (Cloud)."
+    )
 #logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
