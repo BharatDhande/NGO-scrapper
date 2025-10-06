@@ -1,0 +1,15 @@
+streamlit
+requests
+beautifulsoup4
+pandas
+openpyxl
+selenium
+webdriver-manager
+fake-useragent
+lxml
+html5lib
+spacy
+phonenumbers
+geopy
+textblob
+validators
