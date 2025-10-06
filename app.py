@@ -22,13 +22,13 @@ api_key = os.getenv("GEMINI_API_KEY")
 if api_key:
     api_key = api_key.strip()
 
-# Configure Gemini AI or do nothing if missing
+# Configure Gemini AI or show error if missing
 if api_key:
     genai.configure(api_key=api_key)
-    st.success("✅ Gemini API key loaded successfully.")
+    st.success("✅ Gemini API key loaded successfully from Cloud Advanced Settings.")
 else:
     st.error(
-        "⚠️ Gemini API key not found! Please set it in .env (local) or Streamlit Cloud Advanced Settings (Cloud)."
+        "⚠️ Gemini API key not found! Please set it in Streamlit Cloud Advanced Settings."
     )
 #logging
 logging.basicConfig(level=logging.INFO)
