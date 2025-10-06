@@ -18,16 +18,12 @@ import streamlit as st
 import google.generativeai as genai
 api_key = st.secrets["general"]["GEMINI_API_KEY"]
 
-# Strip whitespace just in case
-if api_key:
-    api_key = api_key.strip()
-
-# Configure Gemini AI or show error
-if api_key:
-    genai.configure(api_key=api_key)
+if api_key and api_key.strip():
+    genai.configure(api_key=api_key.strip())
     st.success("✅ Gemini API key loaded successfully from Streamlit Secrets.")
 else:
     st.error("⚠️ Gemini API key not found! Please set it in Streamlit Secrets.")
+
 #logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
