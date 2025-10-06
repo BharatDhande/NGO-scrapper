@@ -23,9 +23,9 @@ api_key = os.getenv("GEMINI_API_KEY")
 if api_key:
     api_key = api_key.strip()
     genai.configure(api_key=api_key)
-    st.success("✅ Gemini API key loaded from .env file.")
+    st.success("AI powered scraping")
 else:
-    st.error("⚠️ Gemini API key not found! Please create a `.env` file with GEMINI_API_KEY=your_api_key_here")
+    st.error("Gemini API key not found!")
 #logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -540,7 +540,7 @@ st.markdown('<h1 class="main-header">🌐 NGO Web Scraper <span class="ai-badge"
 #Check for gemini api key 
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
 if GEMINI_API_KEY:
-    st.success("✅ System is ready!")
+    st.success("Scraper is ready!")
 else:
     st.warning("⚠️ **Gemini API key not found!** Create a `.env` file with `GEMINI_API_KEY=your_api_key_here`")
     st.info("📝 Get your free API key from: https://makersuite.google.com/app/apikey")
