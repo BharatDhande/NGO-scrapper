@@ -31,7 +31,7 @@ if api_key:
     st.success("✅ Gemini API key loaded successfully.")
 else:
     st.error(
-        "⚠️ Gemini API key not found! Please set it in .env (local) or Environment Variables (Cloud)."
+        "⚠️)."
     )
 #logging
 logging.basicConfig(level=logging.INFO)
