@@ -13,6 +13,12 @@ import json
 from dotenv import load_dotenv
 import time
 
+
+import streamlit as st
+import google.generativeai as genai
+
+# Use Streamlit's secrets
+genai.configure(api_key=st.secrets["GOOGLE_API_KEY"])
 os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = ''
 
 load_dotenv()
