@@ -30,9 +30,7 @@ if api_key:
     genai.configure(api_key=api_key)
     st.success("✅ Gemini API key loaded successfully.")
 else:
-    st.error(
-        "⚠️)."
-    )
+    pass
 #logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
