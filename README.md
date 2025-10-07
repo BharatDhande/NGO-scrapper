@@ -15,3 +15,8 @@ A Streamlit-powered tool that scrapes NGO websites and uses **AI** to extract st
 After scraping, click the **Download Excel** button to save all extracted data in a professional spreadsheet.
 
 ![Download Excel Button](screenshots/down_excel_btn.png)
+
+## 📂 Excel sheet
+The excel file we get
+
+![Download Excel Button](screenshots/excel.png)
