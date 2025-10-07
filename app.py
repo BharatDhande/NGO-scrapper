@@ -16,16 +16,15 @@ import time
 
 import streamlit as st
 import google.generativeai as genai
-load_dotenv()
 
-api_key = os.getenv("GEMINI_API_KEY")
+
+api_key = st.secrets["GEMINI_API_KEY"]   #loads the toml
 
 if api_key:
-    api_key = api_key.strip()
-    genai.configure(api_key=api_key)
+    genai.configure(api_key=api_key.strip())
     st.success("AI powered scraping")
 else:
-    st.error("Gemini API key not found!")
+    st.error("⚠️ Gemini API key not found! Please set it in .streamlit/secrets.toml (local) or Cloud Secrets.")
 #logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
