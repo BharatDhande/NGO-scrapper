@@ -18,13 +18,13 @@ import streamlit as st
 import google.generativeai as genai
 
 
-api_key = st.secrets["GEMINI_API_KEY"]   #loads the toml
+api_key = st.secrets["GEMINI_API_KEY"]  
 
 if api_key:
     genai.configure(api_key=api_key.strip())
     st.success("AI powered scraping")
 else:
-    st.error("⚠️ Gemini API key not found! Please set it in .streamlit/secrets.toml (local) or Cloud Secrets.")
+    st.error("⚠️ Gemini API key not found!")
 #logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -173,7 +173,7 @@ def scrape_comprehensive_content(url):
         if not url.startswith(('http://', 'https://')):           #if missing
             url = 'https://' + url   
         
-        response = requests.get(url, headers=headers, timeout=15)   # Scrapes main page
+        response = requests.get(url, headers=headers, timeout=15)   #main Page
 
         response.raise_for_status()
         
@@ -191,7 +191,7 @@ def scrape_comprehensive_content(url):
         
         for page_url in additional_pages:
             try:
-                time.sleep(0.5)  # Be polite to the server
+                time.sleep(0.5)  #delay between multiple pages scraping
                 page_response = requests.get(page_url, headers=headers, timeout=10)
                 page_response.raise_for_status()
                 
@@ -220,7 +220,7 @@ def extract_structured_data(soup):
     """Extract contact info from footer, contact sections, and metadata"""
     structured_info = []
     
-    #searches footer
+    #forfooter
     footer = soup.find('footer')
     if footer:
         footer_text = footer.get_text()
@@ -248,14 +248,14 @@ def clean_json_response(response_text):
     response_text = response_text.strip()         #remove markdown blocks
 
     
-    # Remove ```json or ``` at start
+    
     if response_text.startswith('```json'):
         response_text = response_text[7:]
     elif response_text.startswith('```'):
         response_text = response_text[3:]
     
     
-    if response_text.endswith('```'):        # Remove ``` at end
+    if response_text.endswith('```'):        # Remove at end
         response_text = response_text[:-3]
     
     response_text = response_text.strip()
@@ -316,7 +316,7 @@ def extract_required_fields_with_gemini(all_content, url, retry_count=0):
         import google.generativeai as genai
         genai.configure(api_key=GEMINI_API_KEY)
         
-        # combines all content
+        #combines all content
         combined_content = "\n\n=== WEBSITE SECTIONS ===\n\n"
         for source, content in all_content:
             combined_content += f"\n--- {source} ---\n{content[:3000]}\n"
@@ -373,7 +373,7 @@ Return ONLY the JSON object, nothing else."""
             }
         )
         
-        # Extract response text with multiple fall backs
+        #fallback opt
         response_text = None
         
         if hasattr(response, 'text'):
@@ -382,7 +382,7 @@ Return ONLY the JSON object, nothing else."""
             candidate = response.candidates[0]
             
             if candidate.finish_reason not in [1, "STOP"]:
-                # If blocked or incomplete, retry with different model
+                #retry with different model
                 if retry_count < 2:
                     logger.warning(f"Retry {retry_count + 1}: finish_reason={candidate.finish_reason}")
                     time.sleep(1)
@@ -467,7 +467,7 @@ Return ONLY the JSON object, nothing else."""
             else:
                 normalized_data[field] = str(normalized_data[field]).strip()
         
-        # Check if too many fields are "Not found"
+        
         not_found_count = sum(1 for v in normalized_data.values() if v == "Not found")
         
         #REtry if more than 3 fields anre not found
